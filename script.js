@@ -25,24 +25,24 @@
                 this.computerScore.textContent = updatedScore;
             }, 500);
         }
-        backToDefault(){
+        backToDefault() {
             this.player1Selection.textContent = "??";
             this.player1Selection.style.color = "initial";
             this.player2Selection.textContent = "??";
             this.player2Selection.style.color = "initial";
             this.winner.textContent = "";
             this.headButton.removeAttribute("disabled");
-            this.tailButton.removeAttribute("disabled"); 
+            this.tailButton.removeAttribute("disabled");
         }
-        checkScores(){
+        checkScores() {
             let computerScore = parseInt(this.computerScore.textContent);
             let playerScore = parseInt(this.playerScore.textContent);
 
-            if(computerScore == 5){
+            if (computerScore == 5) {
                 window.alert("Computer has won the game, starting over....");
                 window.location.reload();
             }
-            if(playerScore == 5){
+            if (playerScore == 5) {
                 window.alert("You have won this game congratulations, starting over....");
                 window.location.reload();
             }
@@ -85,9 +85,10 @@
                                 }, 500);
                                 this.addcomputerScore();
                                 setTimeout(() => {
-                                    this.backToDefault()
+                                    this.backToDefault();
+                                    setTimeout(() => { this.checkScores() },2000);
                                 }
-                                    ,4000);
+                                    , 3000);
                             } else {
                                 this.winner.style.color = 'green';
                                 setTimeout(() => {
@@ -96,16 +97,16 @@
                                 this.addplayerScore();
                                 setTimeout(() => {
                                     this.backToDefault()
-                                    setTimeout(()=>{this.checkScores()}, 1000);
+                                    setTimeout(() => { this.checkScores() },2000);
                                 }
-                                    ,4000);
+                                    , 3000);
                             }
                         }, 1000);
                     }
                 }, 1000);
             }, 1500);
         }
-        clickedTails(){
+        clickedTails() {
             let counter = 0;
             let cardNoDeterminant = Math.floor(Math.random() * 2);
             let cardChoices = ['tail', 'head'];
@@ -143,9 +144,12 @@
                                 }, 500);
                                 this.addplayerScore();
                                 setTimeout(() => {
-                                    this.backToDefault()
+                                    this.backToDefault();
+                                    setTimeout(() => {
+                                        this.checkScores();
+                                    }, 2000);
                                 }
-                                    ,4000);
+                                    , 3000);
                             } else {
                                 this.winner.style.color = 'green';
                                 setTimeout(() => {
@@ -154,9 +158,11 @@
                                 this.addcomputerScore();
                                 setTimeout(() => {
                                     this.backToDefault()
-                                    this.checkScores();
+                                    setTimeout(() => {
+                                        this.checkScores();
+                                    }, 2000);
                                 }
-                                    ,4000);
+                                    , 3000);
                             }
                         }, 1000);
                     }
@@ -169,13 +175,13 @@
     let tailButton = document.getElementById("tails");
     let game = new CoinGame();
 
-    headButton.addEventListener("click", function(){
+    headButton.addEventListener("click", function () {
         headButton.setAttribute("disabled", "disabled");
         tailButton.setAttribute("disabled", "disabled");
         game.clickedHeads();
     }, false);
 
-    tailButton.addEventListener("click", function(){
+    tailButton.addEventListener("click", function () {
         tailButton.setAttribute("disabled", "disabled");
         tailButton.setAttribute("disabled", "disabled");
         game.clickedTails();
