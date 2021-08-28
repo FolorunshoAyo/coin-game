@@ -54,8 +54,15 @@ body{
     padding: 0.9em;
     margin-right: 0.8em;
     cursor: pointer;
-    border: none;
+    border-style: outset;
     border-radius: 1em;
+}
+#heads:focus, #tails:focus{
+    border-style: none;
+    padding: 1.2em;
+}
+#heads:disabled, #tails:disabled{
+    border-style: outset;
 }
 #heads{
     background-color: green;
